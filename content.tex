@@ -56,22 +56,26 @@ The natural language description in the rulebook helps motivate conceptual model
 
 Object-oriented mechanisms helped structure the system by organizing the game into well- defined classes with clear responsibilities. Encapsulation allowed each class to manage its own data and behaviours, reducing complexity and making the design easier to understand.
 
+For example, instead of using primitive values to represent the game concepts, such as the resource types (i.e., wood, lumber, etc.), our system uses a Resources enumeration instead. This directly reflects the mechanism of avoiding using magic numbers by instead embedding meaning into the types. Additionally, encapsulating resources within an enum also prevents invalid inputs at compile time and improves the safety of the system by ensuring that only valid resource types can exist within the application.
+
 Abstraction also played an important role by allowing common concepts to be modelled at a higher level, making design independent of implementation details. 
+
+This may be reflected through the Building abstract class, which holds shared behaviour across different building types, while subclasses such as Settlement and City provide specific implementations. This abstraction allows the Player to store a map of buildings using the Building type rather than their specific subclasses. By relying on polymorphism, the player can treat all buildings uniformly while still allowing the Settlement and City subclasses to exhibit different behaviour, such as contributing to different point values.
 
 Overall, these OO mechanisms supported a maintainable design and provided a clear implementation of the problem. 
 
 \textbf{Elaborate on the SOLID principles used in your design}
 There are several SOLID principles that are used in the design:
 	
-1. Single Responsibility Principle: Each class has a clear responsibility, focused on just one task. For example, the Board class manages the game layout, the Player class manages player-related attributes and methods, etc. This helps with readability and maintains the code better
+\textbf{1. Single Responsibility Principle:} Each class has a clear responsibility, focused on just one task. For example, the Board class manages the game layout, the Player class manages player-related attributes and methods, etc. This helps with readability and maintains the code better
 \newline
-2. Open/Closed Principle: The system is open for extension but closed for modification. For example, new building types can be added by extending the Building abstract class without changing the existing logic. This also reduces the risk of bugs.
+\textbf{2. Open/Closed Principle:} The system is open for extension but closed for modification. For example, new building types can be added by extending the Building abstract class without changing the existing logic. This also reduces the risk of bugs.
 \newline
-3. Liskov Substitution Principle: Settlement or City subclasses don’t require the Building superclass, and it can replace it without breaking the code. This makes sure that polymorphism works in the code.
+\textbf{3. Liskov Substitution Principle:} Settlement or City subclasses don’t require the Building superclass, and it can replace it without breaking the code. This makes sure that polymorphism works in the code.
 \newline
-4. Interface Segregation Principle: 
+\textbf{4. Interface Segregation Principle:} The Interface Segregation Principle states that classes should not be forced to depend on methods they do not use. Instead of creating one large interface that handles all game actions, the design should separate behaviour into smaller, specific interfaces. In this application, different game entities perform very different actions. For example, a Player can build on their turn, while the Board only needs behaviour related to resource production.
 \newline
-5. Dependency Inversion Principle: 
+\textbf{5. Dependency Inversion Principle:} The Dependency Inversion Principle states that entities should depend on abstractions and not concretes. In this design, the game logic does not directly depend on concrete classes like Settlement or City. Instead, it depends on the abstract type Building. For example, the Player is able to store buildings using the abstract Building type rather than its specific subclasses. As a result of the player depending on the abstraction rather than concrete implementations, new building types can be added without modifying the Player class.
 
 \section{Translating engineering models to program code}
 
