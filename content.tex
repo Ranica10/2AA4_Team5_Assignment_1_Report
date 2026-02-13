@@ -4,18 +4,35 @@ This assignment required us to create a simulator for the board game 'Settlers o
 
 \section{Requirements traceability}
 
-\begin{table}[h]
-    {\small
-    \begin{tabular}{@{}p{2cm}p{2cm}p{2cm}p{8cm}@{}}
-        \toprule
-        \multicolumn{1}{c}{\textbf{Req ID}} & \multicolumn{1}{c}{\textbf{Status}} & \multicolumn{1}{c}{\textbf{Implemented in}} & \multicolumn{1}{c}{\textbf{Design considerations}} \\
-        R1.1 & \{Missing, Partial, Implemented\} & \code{MapSetup.java} & The software sets up the same map by a hard-wired specification. The specification is given in the \code{MapSetup} class' \code{tiles} data structure and used in the \code{generateMap()} method at the initialization phase of the program. \\
-        ... & ... & ...  & ... \\ \bottomrule
-    \end{tabular}}
-\end{table}
+    \begin{longtable}{|p{1.2cm}|p{2.5cm}|p{2.5cm}|p{8cm}|}
+    \caption{Requirements Traceability Matrix} \\
+    \hline
+    \textbf{Req ID} & \textbf{Status} & \textbf{Status} & \textbf{Design considerations} \\
+    \hline
+    \endfirsthead
 
-\id{The goal of this matrix is to aid your TA verify the satisfaction of requirements. If the table is superficial or too verbose, your TA will have a hard time verifying the completeness of your deliverable, and that will result in lost marks.
-Use the Mising-Partial-Implemented status markers in your final report. Use the code{} command to format file names and Java code elements, such as class names, method names, etc.}
+    
+    R1.1 & Implemented & \code{Board.java} & The software shall first set up a valid map. Use the specified identification mechanism for tiles and nodes. \\
+    \hline
+    R1.2 & Implemented & \code{Player.java}, \code{Game.java} & The simulator shall be able to simulate 4 randomly acting agents (playing on the map generated in R1.1). \\
+    \hline
+    R1.3 & Implemented & \code{Game.java} & The simulation must follow the rules outlined in the attached rulebook. (Minus some features and feature groups listed below, after the requirements.) \\
+    \hline
+    R1.4 & Implemented & \code{Game.java} & The simulator shall be able to simulate the game for a user-defined number of rounds (maximum 8192 rounds, i.e., 8192x4=32768 turns) or until 10 VPs are collected by any of the agents. The configuration is defined in a configuration file. \\
+    \hline
+    R1.5 & Implemented & \code{Game.java} & The simulator shall halt execution upon reaching one of the termination conditions identified in R1.4. \\
+    \hline
+    R1.6 & Implemented & \code{Board.java} & The key invariants of the game must be respected, including: new roads must be connected to existing ones or roads or settlements; newly built cities must replace existing settlements; the distance between different players' settlements/cities must be at least two; etc. \\
+    \hline
+    R1.7 & Implemented & \code{Game.java} & The simulator shall print the actions taken by the agents on the console in the specified encoding. [Spec] The simulator shall print the current victory points at the end of each round. \\
+    \hline
+    R1.8 & Implemented & \code{Board.java}, \code{Player.java} & Agents with more than 7 cards in their hand must try to spend those cards by building something. \\
+    \hline
+    R1.9 & Implemented & \code{Main.java} & The key functionality of the simulator must be demonstrated in a sufficiently detailed Demonstrator class with one static void main method in it that will run one or more demonstrative simulations. The demonstrator is to be properly explained by comments in the code (and in the report). \\
+    \hline
+\end{longtable}
+
+
 
 \section{Design and domain modeling}
 
