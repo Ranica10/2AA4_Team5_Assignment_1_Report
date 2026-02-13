@@ -1,6 +1,6 @@
 \section{Executive summary}
 
-\id{Summarize the assignment, how it went, general impressions, etc. Delete these blue comments from the final version of your report.}
+This assignment required us to create a simulator for the board game 'Settlers of Catan.' The simulator creates a game map, plays games with four computer-controlled players, and follows the rules of the game until a player wins. We were required to do this assignment in several steps: first, creating a UML diagram to lay out how we wanted our game to be structured, and then implementing that diagram in actual Java code. We also attempted to use AI to create code for us from our diagram to see how well it would actually work. The code created by the AI looked good at first, but it had logical errors that we had to correct. The final version of the simulator does what it is supposed to—it keeps track of resources, builds roads and settlements, enforces the distance rules between pieces, and prints out what each player does each turn. The entire experience has taught us that while diagrams are useful for planning, you still have to go back and fix your design when you start actually coding. Going through the assignment step by step helped to understand why software engineering is more than just coding—it’s about thinking through problems before building them.
 
 \section{Requirements traceability}
 
@@ -19,23 +19,108 @@ Use the Mising-Partial-Implemented status markers in your final report. Use the 
 
 \section{Design and domain modeling}
 
-\id{Elaborate on this phase. Follow the pointers in the assignment and share additional insights if applicable.}
+\textbf{Why was this modelling stage useful and what benefits does your domain model have compared to the specification in the attached PDF?}
+
+Domain modelling was useful because it helped us understand the problem at a high level before focusing on implementation. By using UML in Papyrus, we identified the key entities such as Board, Tile, Node, Road, Player, Building, etc., and their relationships, making the structure of the system clear and understandable. 
+
+Compared to the specification in the PDF, the domain model provides a clearer and more visual representation of the program. While it explains roles in text, the UML shows more responsibilities and relationships of each class, improving our understanding and supporting a cleaner object-oriented design. 
+
+\textbf{How does the natural language description in the rulebook motivate conceptual modelling? Was this step necessary? Was this step beneficial? If you believe it was beneficial, name three concrete benefits. (Hint: you can imagine an even more complex software system, e.g., a real banking system with many user roles, transaction rules, etc.)}
+
+The natural language description in the rulebook helps motivate conceptual modelling because it explains how the game works in teams of actions, objects and rules, such as players, resources,and turns. These ideas can then be translated into classes and relationships. This step was necessary because it ensures we understand the requirements before designing the game. Without it, important elements or roles could be missed. It helps identify key entities early, reduces design errors and makes the system easier to implement and modify. In more complex systems, like banking software, this step is even more important because misunderstanding requirements can lead to serious problems. 
+
+\textbf{Elaborate on how OO mechanisms helped you design the system. }
+
+Object-oriented mechanisms helped structure the system by organizing the game into well- defined classes with clear responsibilities. Encapsulation allowed each class to manage its own data and behaviours, reducing complexity and making the design easier to understand.
+
+Abstraction also played an important role by allowing common concepts to be modelled at a higher level, making design independent of implementation details. 
+
+Overall, these OO mechanisms supported a maintainable design and provided a clear implementation of the problem. 
+
 
 \section{Translating engineering models to program code}
 
-\id{Elaborate on this phase. Follow the pointers in the assignment and share additional insights if applicable.}
-
 \section{Using Generative AI}
 
-\id{Elaborate this phase. Follow the pointers in the assignment and share additional insights if applicable.}
+\textbf{What did your gen AI tool did well? What are its strengths?}
+
+The gen AI performed well in translating the UML to structured Java code. It correctly identified the classes, attributes and methods, inheritance and associations, thus creating a logical class skeleton that closely matches the class diagram. Another strength was its ability to organize the code so it is easy to understand and is readable. It also followed OOP principles such as encapsulation and abstraction.
+
+\textbf{What mistakes did your gen AI tool make? What are its weaknesses?}
+
+Even though the gen AI tool has its strengths, it also has some weaknesses.
+It is focused more on the structure, rather than the behaviour. For instance, the class definitions were consistent with the UML diagram, but the implementation of the method itself lacked proper logic, since it didn’t know what exactly we wanted it to implement for the game. It made certain assumptions about the game logic. These assumptions may or may not be consistent with the actual game implementation. Therefore, we need to provide some more details to the tool for it to properly implement the logic.
+
+\textbf{How would you use gen AI in a large-scale software project? How would you balance its strengths and weaknesses?}
+
+Gen AI would be most useful as a productivity tool and a supporting tool in a large-scale software project. It would be used as a tool for creating initial code, scaffolding, documentation, and refactoring suggestions. In balancing the strengths and weaknesses of Gen AI, it is imperative that all code created by the AI be reviewed, tested and also validated by humans, while critical parts of the code are designed by human developers only.
+
+\textbf{You run a company and you need to develop a software tool for your clients. Your user base is roughly 1 million people. Each user is willing to pay \$1000 for the software tool you have in mind. With every passing day, you lose 10 potential clients. (This is a rough estimate that lumps market dynamics and competition into one variable. Let’s assume that marketing, sales, delivery, etc are instantaneous and once the product is ready, users will download it and pay you the \$1000.) Poor quality of the final product will result in higher customer churn rate, i.e., customers will abandon the product and ask back for their money. (Let’s assume that you would pay back to money without engaging in litigation.) Your goal, as a company, is to maximize your revenue. You consult your software team to see your options. They suggest four potential strategies as shown in the table below. Which strategy would you use and why?
+}
+
+Cowboy coding - no design phase, 20 days manual programming, churn rate 0.25
+
+Total time: 20 days
+
+Net customers: (1000000 - 10 x 20) x (1 - 0.25) = 998000 x 0.75 = 748500
+
+Revenue: \$748.5 million
+
+Vibe coding - no design phase, 10 days of AI programming, churn rate 0.33
+
+Total time: 10 days
+
+Net customers: (1000000 - 10 x 10) x (1 - 0.33) = 999000 x 0.67 = 669330
+
+Revenue: \$669.33 million
+
+Conventional SE - 20 days design, 20 days manual programming, churn rate 0.05
+
+Total time: 40 days
+
+Net customers (1000000 - 10 x 40) x (1 - 0.05) = 996000 x 0.95 = 946200
+
+Revenue: \$946.2 million
+
+Model-driven SE - 25 days formal design, 5 days generative programming, churn rate 0.025
+
+Total time: 30 days
+
+Net customers: (1000000 - 10 x 30) x (1 - 0.025) = 997000 x 0.975 = 972075
+
+Revenue: \$972.075 million
+
+The best software development strategy in this case is Model-driven Software Engineering, given its highest projected revenues of close to \$972 million. This software engineering strategy has a 25-day formal software design phase, which is then combined with an equally effective but faster generative programming phase, requiring just 5 days of coding. Therefore, the entire software development phase occurs in just 30 days. It has a low churn rate of just 2.5\%. In spite of the long design phase requiring a substantial level of investment, the overall software product reliability is improved due to its formal nature, resulting in very low refunds. In comparison, Conventional SE, which has also been used in previous tasks, does produce a good revenue of almost \$946 million but has a much longer development phase of 40 days. The other two strategies, Cowboy coding and Vibe coding, which are faster, result in much lower revenues of around \$749 million and \$669 million, respectively, given that the time saved is completely overshadowed by low product reliability and higher churn rates.
 
 \section{Implementation}
 
-\id{Elaborate this phase. Follow the pointers in the assignment and share additional insights if applicable.}
+\textbf{Now that you are in the implementation phase, reflect on this: did you get the domain models right at the first attempt, or did you iterate between modelling and implementation? If you did iterate, why and how? What does this say about your design and a human’s modelling capability? (Hint: is there a difference in the level of abstraction when modelling vs when implementing software code?)}
+
+During implementation, we did not get the domain model completely right on the first attempt. We had to iterate between modelling and implementation several times. For example, in our UML, the takeTurn() method was placed inside the Player class. However during implementation, we realized that turn logic required coordination between multiple components such as Board, Tile, Node and Dice. Because of this, we refactored the design and moved the takeTurn() to the Board class, where it made sense for managing the overall game. To improve readability, maintainability , and follow good design practices, we separated the takeTurn methods into a few helper methods:  produceResource(), buildRoad(), buildSettlement(), buildCity(), isRoadConnected(), and addRoadToBoard(). This separation allowed each method to focus on a single task, making the code easier to understand and modify. 
+
+We also added more functionality in the Board class to connect Tile and Node objects, which was not fully specified in the original UML, it is a helper method as well to connect the tile and nodes on the board. We updated the method in the Player class as well, added some helper methods, such as addResource() and addBuilding(), which were not fully defined in the UML, but were necessary to make the program work properly. 
+
+Modelling and implementation operate at different levels of abstraction. In UML, we focused on high level relationships, but during coding we had to consider details like object interactions and structured code. This showed us that initial design often needs refinement and iteration is a natural part of developing software. 
+
+\textbf{What were some of the challenges in these iterations (technical or conceptual)? What tools or integrated tool chains would help you in those steps? (You can specify a few abstract ideas, you don’t have to name specific tools or techniques.)}
+
+During implementation, we faced both technical and conceptual challenges. Conceptually, it was hard to predict all the interactions between players, the board, tile, and resources. Technically, we had to figure out how to track resources, buildings and points correctly, and make sure actions like building or gaining resources worked without errors. Some approaches that we used: 
+\begin{itemize}
+    \item Simulation- to test how the game behaves. 
+    \item Iterative modeling- to update UML diagrams as things modify.
+    \item Unit testing- to check individual methods work correctly
+\end{itemize}
+
+These approaches help make the transition from abstract design to working code easier and more reliable.
 
 \section{Reflection on the engineering process}
 
-\id{Elaborate on the overall experience. Follow the pointers in the assignment and share additional insights if applicable.}
+\textbf{What communication channels did you use?}
+We relied on Microsoft Teams as our main communication platform, enabling online meetings, discussions, and file sharing. Additionally, we used the Messages app for quick updates among team members.
+
+\textbf{How did you handle the time pressure?}
+To handle the time pressure, we distributed the workload among all team members so that the tasks were evenly divided. This ensured that the burden of completing all the tasks was not on one person and that multiple aspects of the project could be worked on simultaneously.
+
 
 \section{Roles and responsibilities}
 
