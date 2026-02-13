@@ -46,6 +46,12 @@ Compared to the specification in the PDF, the domain model provides a clearer an
 
 The natural language description in the rulebook helps motivate conceptual modelling because it explains how the game works in teams of actions, objects and rules, such as players, resources,and turns. These ideas can then be translated into classes and relationships. This step was necessary because it ensures we understand the requirements before designing the game. Without it, important elements or roles could be missed. It helps identify key entities early, reduces design errors and makes the system easier to implement and modify. In more complex systems, like banking software, this step is even more important because misunderstanding requirements can lead to serious problems. 
 
+\textbf{There are at least two aspects of the problem you did not model. What are these? How (in what formalism) would you model those elements?}
+
+1. The game logic, like turn order, dice rolling, trading rules, or win conditions were not implemented in this problem. These help with how the game runs, not the structure. They can be modelled using different methods, taking care of a specific part of the logic, for example, startTurn, rollDice, etc., would be the different parts of the player’s turn. 
+\newline
+2. User interaction was not modelled either. This would include players providing input and how the game is displayed. These are separate from game logic and would be handled using UI, and divided into three bits: the game data and rules, what the player sees, and user actions. 
+
 \textbf{Elaborate on how OO mechanisms helped you design the system. }
 
 Object-oriented mechanisms helped structure the system by organizing the game into well- defined classes with clear responsibilities. Encapsulation allowed each class to manage its own data and behaviours, reducing complexity and making the design easier to understand.
@@ -54,8 +60,24 @@ Abstraction also played an important role by allowing common concepts to be mode
 
 Overall, these OO mechanisms supported a maintainable design and provided a clear implementation of the problem. 
 
+\textbf{Elaborate on the SOLID principles used in your design}
+There are several SOLID principles that are used in the design:
+	
+1. Single Responsibility Principle: Each class has a clear responsibility, focused on just one task. For example, the Board class manages the game layout, the Player class manages player-related attributes and methods, etc. This helps with readability and maintains the code better
+\newline
+2. Open/Closed Principle: The system is open for extension but closed for modification. For example, new building types can be added by extending the Building abstract class without changing the existing logic. This also reduces the risk of bugs.
+\newline
+3. Liskov Substitution Principle: Settlement or City subclasses don’t require the Building superclass, and it can replace it without breaking the code. This makes sure that polymorphism works in the code.
+\newline
+4. Interface Segregation Principle: 
+\newline
+5. Dependency Inversion Principle: 
 
 \section{Translating engineering models to program code}
+
+\textbf{What are the translational semantics of this step? In other words: what in your design model maps to what in your program code? What are the benefits of this step? When would you use this approach (modelling and translation) and when would you skip the modelling part and start writing program code immediately?}
+
+In our project, each class in the UML diagram becomes a Java class. Abstract classes in our UML diagram were written with the abstract keyword, the resources enumeration became a Java enum, and relationships between classes were represented by object references and lists in the code. For example, the Board class has a list of Tile, Node, and Road Objects, just as shown in the diagram. Inheritance in the UML using arrows used the extends keyword. Eclipse with Papyrus was used to create the UML diagram. Then we generated the class skeletons with Papyrus. This step helped to reduce confusion, since the structure was already designed in UML. It helped prevent structural mistakes when writing the code, as the code was generated from UML using Papyrus, and the class relationships were correct. This approach is useful for projects where structure is important. It is very helpful when working in a team, as everyone can agree on the design before coding. However, when working on small programs, it may be easier to start coding directly without making a UML diagram because the relationships are simpler. 
 
 \section{Using Generative AI}
 
@@ -130,6 +152,11 @@ During implementation, we faced both technical and conceptual challenges. Concep
 
 These approaches help make the transition from abstract design to working code easier and more reliable.
 
+\textbf{Elaborate on the OO mechanisms and SOLID principles in your implementation. Are these any different from the ones used in the design? If they are: why?}
+
+Object oriented mechanisms helped us organise the systems clearly. Encapsulation was used by making the attributes private to control who had access to them. Abstraction was used through the Building abstract class, which allowed different building types to behave similarly. Polymorphism let the Player class treat all buildings as Building objects (Cities, Settlements, and Roads), even though they might be different classes. This made it easy to implement and the code flexible. 
+SOLID principles were also used in our implementation. The Single Responsibility principle is followed as every class has one job. For example, the Board class manages the layout, Player class manages player data, and the Game class controls the game flow. The Open Closed principle is followed as we can add new building types by extending Building class without changing any existing code. The Liskov Substitution Principle is followed as Settlement, Cities, and Road classes can be used anywhere a Building object is required without creating errors, and can standalone. The Interface Segregation Principle is followed as abstract classes only include methods that are required. Subclasses do not have to implement methods that are not required by them. The Dependency Inversion Principle is followed as the Player class depends on the abstract Building type than the subclasses. In the design phase, we thought of what implementations could look like, in the implementation phase, we had to apply them carefully to make sure that they worked. 
+
 \section{Reflection on the engineering process}
 
 \textbf{What communication channels did you use?}
@@ -138,6 +165,9 @@ We relied on Microsoft Teams as our main communication platform, enabling online
 \textbf{How did you handle the time pressure?}
 To handle the time pressure, we distributed the workload among all team members so that the tasks were evenly divided. This ensured that the burden of completing all the tasks was not on one person and that multiple aspects of the project could be worked on simultaneously.
 
+\textbf{What was the hardest organizational part of this assignment? What did you learn from it and what will you do to mitigate those issues next time?}
+
+The hardest part of this assignment was making sure that everyone understood the UML diagram in the same way before starting to work on implementing the code. Even though the diagram is clear, team members can interpret UML diagrams and their relationships differently. This made us make adjustments to our UML and our code. We learned that spending more time reviewing the UML together before generating the code would reduce the confusion later. In the future, we will do a short review of the design process before working on the code.
 
 \section{Roles and responsibilities}
 
