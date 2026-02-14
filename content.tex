@@ -32,9 +32,18 @@ This assignment required us to create a simulator for the board game 'Settlers o
     \hline
 \end{longtable}
 
-
+\newpage
 
 \section{Design and domain modeling}
+
+The following UML diagram represents the structure of our game system, and it shows the main classes, and the relationships between them.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{images/uml.png}
+    \caption{UML Diagram of the System}
+    \label{fig:uml}
+\end{figure}
 
 \textbf{Why was this modelling stage useful and what benefits does your domain model have compared to the specification in the attached PDF?}
 
@@ -77,11 +86,15 @@ There are several SOLID principles that are used in the design:
 \newline
 \textbf{5. Dependency Inversion Principle:} The Dependency Inversion Principle states that entities should depend on abstractions and not concretes. In this design, the game logic does not directly depend on concrete classes like Settlement or City. Instead, it depends on the abstract type Building. For example, the Player is able to store buildings using the abstract Building type rather than its specific subclasses. As a result of the player depending on the abstraction rather than concrete implementations, new building types can be added without modifying the Player class.
 
+\newpage 
+
 \section{Translating engineering models to program code}
 
 \textbf{What are the translational semantics of this step? In other words: what in your design model maps to what in your program code? What are the benefits of this step? When would you use this approach (modelling and translation) and when would you skip the modelling part and start writing program code immediately?}
 
 In our project, each class in the UML diagram becomes a Java class. Abstract classes in our UML diagram were written with the abstract keyword, the resources enumeration became a Java enum, and relationships between classes were represented by object references and lists in the code. For example, the Board class has a list of Tile, Node, and Road Objects, just as shown in the diagram. Inheritance in the UML using arrows used the extends keyword. Eclipse with Papyrus was used to create the UML diagram. Then we generated the class skeletons with Papyrus. This step helped to reduce confusion, since the structure was already designed in UML. It helped prevent structural mistakes when writing the code, as the code was generated from UML using Papyrus, and the class relationships were correct. This approach is useful for projects where structure is important. It is very helpful when working in a team, as everyone can agree on the design before coding. However, when working on small programs, it may be easier to start coding directly without making a UML diagram because the relationships are simpler. 
+
+\newpage
 
 \section{Using Generative AI}
 
@@ -135,6 +148,8 @@ Revenue: \$972.075 million
 
 The best software development strategy in this case is Model-driven Software Engineering, given its highest projected revenues of close to \$972 million. This software engineering strategy has a 25-day formal software design phase, which is then combined with an equally effective but faster generative programming phase, requiring just 5 days of coding. Therefore, the entire software development phase occurs in just 30 days. It has a low churn rate of just 2.5\%. In spite of the long design phase requiring a substantial level of investment, the overall software product reliability is improved due to its formal nature, resulting in very low refunds. In comparison, Conventional SE, which has also been used in previous tasks, does produce a good revenue of almost \$946 million but has a much longer development phase of 40 days. The other two strategies, Cowboy coding and Vibe coding, which are faster, result in much lower revenues of around \$749 million and \$669 million, respectively, given that the time saved is completely overshadowed by low product reliability and higher churn rates.
 
+\newpage
+
 \section{Implementation}
 
 \textbf{Now that you are in the implementation phase, reflect on this: did you get the domain models right at the first attempt, or did you iterate between modelling and implementation? If you did iterate, why and how? What does this say about your design and a human’s modelling capability? (Hint: is there a difference in the level of abstraction when modelling vs when implementing software code?)}
@@ -161,6 +176,8 @@ These approaches help make the transition from abstract design to working code e
 Object oriented mechanisms helped us organise the systems clearly. Encapsulation was used by making the attributes private to control who had access to them. Abstraction was used through the Building abstract class, which allowed different building types to behave similarly. Polymorphism let the Player class treat all buildings as Building objects (Cities, Settlements, and Roads), even though they might be different classes. This made it easy to implement and the code flexible. 
 SOLID principles were also used in our implementation. The Single Responsibility principle is followed as every class has one job. For example, the Board class manages the layout, Player class manages player data, and the Game class controls the game flow. The Open Closed principle is followed as we can add new building types by extending Building class without changing any existing code. The Liskov Substitution Principle is followed as Settlement, Cities, and Road classes can be used anywhere a Building object is required without creating errors, and can standalone. The Interface Segregation Principle is followed as abstract classes only include methods that are required. Subclasses do not have to implement methods that are not required by them. The Dependency Inversion Principle is followed as the Player class depends on the abstract Building type than the subclasses. In the design phase, we thought of what implementations could look like, in the implementation phase, we had to apply them carefully to make sure that they worked. 
 
+\newpage
+
 \section{Reflection on the engineering process}
 
 \textbf{How did you divide the workload?}
@@ -182,6 +199,8 @@ To handle the time pressure, we distributed the workload among all team members 
 \textbf{What was the hardest organizational part of this assignment? What did you learn from it and what will you do to mitigate those issues next time?}
 \newline
 The hardest part of this assignment was making sure that everyone understood the UML diagram in the same way before starting to work on implementing the code. Even though the diagram is clear, team members can interpret UML diagrams and their relationships differently. This made us make adjustments to our UML and our code. We learned that spending more time reviewing the UML together before generating the code would reduce the confusion later. In the future, we will do a short review of the design process before working on the code.
+
+\newpage
 
 \section{Roles and responsibilities}
 
